@@ -1,7 +1,6 @@
 package db
 
 import (
-	"github.com/RaymondCode/simple-demo/controller"
 	"github.com/RaymondCode/simple-demo/pkg/constants"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -9,9 +8,9 @@ import (
 
 var DB *gorm.DB
 
+// Init init DB
 func Init() {
 	var err error
-
 	DB, err = gorm.Open(mysql.Open(constants.MySQLDefaultDSN),
 		&gorm.Config{
 			PrepareStmt:            true,
@@ -23,11 +22,10 @@ func Init() {
 	}
 
 	m := DB.Migrator()
-	var user = controller.User{}
-	if m.HasTable(&user) {
+	if m.HasTable(&Video{}) {
 		return
 	}
-	if err = m.CreateTable(&user); err != nil {
+	if err = m.CreateTable(&Video{}); err != nil {
 		panic(err)
 	}
 }
