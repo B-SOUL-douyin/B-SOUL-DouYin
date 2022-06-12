@@ -1,10 +1,10 @@
 package db
 
 import (
-	"github.com/RaymondCode/simple-demo/controller"
+	"github.com/RaymondCode/simple-demo/pkg/constants"
 )
 
-type Video = controller.Video
+type Video = constants.Video
 
 // CreateVideo create video
 func CreateVideo(Videos []Video) error {

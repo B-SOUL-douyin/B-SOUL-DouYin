@@ -1,7 +1,6 @@
 package db
 
 import (
-	"github.com/RaymondCode/simple-demo/controller"
 	"github.com/RaymondCode/simple-demo/pkg/constants"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -23,7 +22,7 @@ func Init() {
 	}
 
 	m := DB.Migrator()
-	var user = controller.User{}
+	var user = constants.User{}
 	if m.HasTable(&user) {
 		return
 	}

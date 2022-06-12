@@ -1,4 +1,4 @@
-package controller
+package constants
 
 var DemoVideos = []Video{
 	{

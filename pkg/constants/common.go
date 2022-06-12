@@ -1,4 +1,4 @@
-package controller
+package constants
 
 type Response struct {
 	StatusCode int32  `json:"status_code"`

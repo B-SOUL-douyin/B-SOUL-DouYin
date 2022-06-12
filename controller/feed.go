@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"github.com/RaymondCode/simple-demo/pkg/constants"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
@@ -10,17 +11,17 @@ import (
 )
 
 type FeedResponse struct {
-	Response
-	VideoList []Video `json:"video_list,omitempty"`
-	NextTime  int64   `json:"next_time,omitempty"`
+	constants.Response
+	VideoList []constants.Video `json:"video_list,omitempty"`
+	NextTime  int64             `json:"next_time,omitempty"`
 }
 
 // Feed same demo video list for every request
 func Feed(c *gin.Context) {
-	var FeedVideos []Video
+	var FeedVideos []constants.Video
 	FeedVideos, err := db.GetFeedList()
 
-	resp := Response{0, ""}
+	resp := constants.Response{0, ""}
 	if err != nil {
 		resp.StatusCode++
 		resp.StatusMsg = resp.StatusMsg + ";" + err.Error()
