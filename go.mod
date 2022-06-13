@@ -1,4 +1,4 @@
-module github.com/RaymondCode/simple-demo
+module github.com/B-SOUL-douyin/B-SOUL-DouYin
 
 go 1.17
 

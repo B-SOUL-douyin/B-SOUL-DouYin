@@ -1,6 +1,6 @@
 package dal
 
-import "github.com/RaymondCode/simple-demo/video/dal/db"
+import "github.com/B-SOUL-douyin/B-SOUL-DouYin/video/dal/db"
 
 // Init init dal
 func Init() {

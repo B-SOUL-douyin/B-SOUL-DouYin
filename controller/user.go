@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"github.com/RaymondCode/simple-demo/pkg/constants"
+	"github.com/B-SOUL-douyin/B-SOUL-DouYin/pkg/constants"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"sync/atomic"

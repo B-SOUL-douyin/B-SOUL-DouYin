@@ -1,13 +1,13 @@
 package controller
 
 import (
-	"github.com/RaymondCode/simple-demo/pkg/constants"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
 	"time"
 
-	"github.com/RaymondCode/simple-demo/video/dal/db"
+	"github.com/B-SOUL-douyin/B-SOUL-DouYin/pkg/constants"
+	"github.com/B-SOUL-douyin/B-SOUL-DouYin/video/dal/db"
 )
 
 type FeedResponse struct {
@@ -16,19 +16,22 @@ type FeedResponse struct {
 	NextTime  int64             `json:"next_time,omitempty"`
 }
 
+var StatusCode int32 = 0
+
 // Feed same demo video list for every request
 func Feed(c *gin.Context) {
 	var FeedVideos []constants.Video
-	FeedVideos, err := db.GetFeedList()
-
-	resp := constants.Response{0, ""}
+	VideoModelTmp, err := db.GetFeedList()
+	resp := constants.Response{}
 	if err != nil {
-		resp.StatusCode++
 		resp.StatusMsg = resp.StatusMsg + ";" + err.Error()
 	}
-	if len(FeedVideos) == 0 {
-		resp.StatusCode++
-		resp.StatusMsg = resp.StatusMsg + "没有新的视频了"
+	if len(VideoModelTmp) == 0 {
+		resp.StatusMsg = resp.StatusMsg + ";没有新的视频了"
+	} else {
+		for _, v := range VideoModelTmp {
+			FeedVideos = append(FeedVideos, v.Video)
+		}
 	}
 
 	LatestTime, _ := strconv.ParseInt(c.Query("latest_time"), 10, 64)
@@ -36,6 +39,8 @@ func Feed(c *gin.Context) {
 		LatestTime = time.Now().Unix()
 	}
 
+	StatusCode++
+	resp.StatusCode = StatusCode
 	c.JSON(http.StatusOK, FeedResponse{
 		Response:  resp,
 		VideoList: FeedVideos,

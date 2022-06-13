@@ -1,7 +1,7 @@
 package db
 
 import (
-	"github.com/RaymondCode/simple-demo/pkg/constants"
+	"github.com/B-SOUL-douyin/B-SOUL-DouYin/pkg/constants"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -22,10 +22,10 @@ func Init() {
 	}
 
 	m := DB.Migrator()
-	if m.HasTable(&Video{}) {
+	if m.HasTable(&VideoModel{}) {
 		return
 	}
-	if err = m.CreateTable(&Video{}); err != nil {
+	if err = m.CreateTable(&VideoModel{}); err != nil {
 		panic(err)
 	}
 }

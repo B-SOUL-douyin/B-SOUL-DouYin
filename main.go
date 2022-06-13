@@ -1,10 +1,13 @@
 package main
 
 import (
+	"github.com/B-SOUL-douyin/B-SOUL-DouYin/video/dal/db"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	db.Init()
+
 	r := gin.Default()
 
 	initRouter(r)
